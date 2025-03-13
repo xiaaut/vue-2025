@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vue Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <form @submit.prevent="handleSubmit">
+            <input type="text" placeholder="enter your username" v-model="username" :class="isUsernameError" />
+            <br />
+            <input type="password" placeholder="enter your password" v-model="password" :class="isPasswordError" />
+            <br />
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        const app = {
+            data () {
+                return {
+                    username: "",
+                    isUsernameError: "",
+                    password: "",
+                    isPasswordError: "",
+                };
+            },
+            methods: {
+                handleSubmit () {
+                    this.isUsernameError = "";
+                    this.isPasswordError = "";
+                    if (this.username.length < 3 || this.password.length < 3) {
+                        alert("Username and password must be at least 3 characters long.");
+                        if (this.username.length < 3) {
+                            this.isUsernameError = "input-error";
+
+                        } else {
+                            this.isPasswordError = "input-error";
+                        }
+                    }
+                    else {
+                        alert("Login successful!");
+                    }
+                }
+            }
+        };
+
+        createApp(app).mount("#app");
+
+    </script>
+</body>
+
+</html>
