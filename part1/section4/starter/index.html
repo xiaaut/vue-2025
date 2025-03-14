@@ -12,7 +12,8 @@
 <body>
     <div id="app">
         <form @submit.prevent="handleSubmit">
-            <input type="text" placeholder="enter your username" v-model="username" :class="isUsernameError" />
+            <input type="text" placeholder="enter your username" v-model="username" :class="isUsernameError"
+                @input='handleUsernameInput' />
             <br />
             <input type="password" placeholder="enter your password" v-model="password" :class="isPasswordError" />
             <br />
@@ -32,6 +33,17 @@
                     isPasswordError: "",
                 };
             },
+
+            watch: {
+                password (newPassword) {
+                    if (newPassword.length < 3) {
+                        this.isPasswordError = "input-error";
+                    } else {
+                        this.isPasswordError = "";
+                    }
+                }
+            },
+
             methods: {
                 handleSubmit () {
                     this.isUsernameError = "";
@@ -47,6 +59,13 @@
                     }
                     else {
                         alert("Login successful!");
+                    }
+                },
+                handleUsernameInput () {
+                    if (this.username.length < 3) {
+                        this.isUsernameError = "input-error";
+                    } else {
+                        this.isUsernameError = "";
                     }
                 }
             }
