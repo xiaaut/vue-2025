@@ -15,16 +15,16 @@
         <hr />
         <br />
 
-        <input placeholder="Enter content to add" />
+        <input placeholder="Enter content to add" v-model="inputText" />
         <br />
         <br />
-        <button>Add</button>
+        <button @click="addTodo">Add</button>
         <br />
         <br />
 
         <!-- Todo List -->
         <ul>
-            <li>demo<button>&times;</button></li>
+            <li v-for="(item,index) in todoArray" :key="index">{{item}}<button @click="removeTodo(index)">&times;</button></li>
         </ul>
     </div>
 
