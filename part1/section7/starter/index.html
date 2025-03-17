@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Todo List</h1>
+        <hr />
+        <br />
+
+        <input placeholder="Enter content to add" v-model="inputText" />
+        <br />
+        <br />
+        <button v-on:click="addTodo">Add</button>
+        <br />
+        <br />
+
+        <!-- Todo List -->
+        <ul>
+            <li v-for="(todoItem, idx) in todoArray" v-bind:key="idx">
+                <div :class="todoItem.isCompleted ? 'deleted': '' ">{{ todoItem.value }}</div>
+                <button v-if="!todoItem.isCompleted " @click="completeTodo(idx)">Complete</button><button
+                    v-on:click="removeTodo(idx)">&times;</button>
+            </li>
+        </ul>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
