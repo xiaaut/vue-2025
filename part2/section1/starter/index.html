@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <label> <input type="checkbox" v-model="isPurple" /> Purple </label>
+
+        <select v-model="circleColor">
+            <option value="">White</option>
+            <option value="text-black">Black</option>
+            <option value="text-orange">Orange</option>
+        </select>
+
+        <label>
+            Circle Size
+            <input type="number" v-model="circleSize" />
+        </label>
+
+        <label>
+            Circle Rotate
+            <input type="number" v-model="circleAngle" />
+        </label>
+        <div class="circle" :class="[circleClass, circleColor]" :style="circleStyle">Hi!</div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
